@@ -1,18 +1,11 @@
-<!-- one way binding -->
-<h2>{{selectedHero.name | uppercase}}</h2>  <!-- 'uppercase' is an 'interpolation binding'. It activates the built in UppercasePipe. Good way to format Strings, dates, currency, etc. You can define your own. -->
-<div><span>id: </span>{{selectedHero.id}}</div>
-<div><span>name: </span>{{selectedHero.name}}</div>
-
-<!-- Two way binding -->
 <h2>My Heroes</h2>
+
 <ul class="heroes">
-  <li *ngFor="let hero of heroes" (click)="onSelect(hero)">
+  <li *ngFor="let hero of heroes"
+    [class.selected]="hero === selectedHero"
+    (click)="onSelect(hero)">
     <span class="badge">{{hero.id}}</span> {{hero.name}}
   </li>
 </ul>
-<div>
-  <label>name:
-    <input [(ngModel)]="selectedHero.name" placeholder="name">
-  </label>
-</div>
 
+<app-hero-detail [hero]="selectedHero"></app-hero-detail><!-- one way property binding. passes selectedHero to the hero-detail component.-->
